@@ -59,6 +59,7 @@ class Template
                         Welcome back,
                         <b>
                             <?= $logged_in_user->username ?>
+                            <!-- extra info to show user is logged in as admin -->
                             <?php if ($is_admin) : ?>
                                 (admin)
                             <?php endif ?>
@@ -78,7 +79,13 @@ class Template
     public static function footer()
     { ?>
             <footer>
-                Copyright Philip 2018
+                <p>
+                    Copyright Crazy Games 2022
+                </p>
+
+                <em>
+                    Crazy Games - You choice for all board games.
+                </em>
             </footer>
         </body>
 
