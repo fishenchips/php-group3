@@ -1,12 +1,13 @@
 <?php
 
-class Database {
+class Database
+{
     private $host = "localhost";
     private $user = "root";
     private $pass = "root";
     private $db = "group3_db";
 
-    protected $conn; 
+    protected $conn;
 
     public function __construct()
     {

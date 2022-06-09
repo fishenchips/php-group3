@@ -1,12 +1,14 @@
-<?php 
+<?php
 
 require_once __DIR__ . "/Database.php";
 require_once __DIR__ . "/User.php";
 
-class UsersDatabase extends Database{
+class UsersDatabase extends Database
+{
 
 
-    public function get_by_username($username){
+    public function get_by_username($username)
+    {
 
         $query = "SELECT * FROM users WHERE username = ?";
 
@@ -22,18 +24,18 @@ class UsersDatabase extends Database{
 
         $user = null;
 
-       
-        if($db_user){
 
-        $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
-        $user->set_password_hash($db_user["password-hash"]);
+        if ($db_user) {
+
+            $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
+            $user->set_password_hash($db_user["passwordHash"]);
         }
 
         return $user;
-
     }
 
-    public function create(User $user){
+    public function create(User $user)
+    {
 
         $query = "INSERT INTO users (username, passwordHash, `role`) VALUES (?, ?, ?)";
 
@@ -45,5 +47,4 @@ class UsersDatabase extends Database{
 
         return $success;
     }
-
 }

@@ -18,7 +18,7 @@
     <h1>Register as new user</h1>
 
     <nav>
-        <a href="/php-group3">Back to home</a>
+        <a href="/php-group3">Back to homepage</a>
     </nav>
 
     <form action="/php-group3/scripts/post-register-user.php" method="post">

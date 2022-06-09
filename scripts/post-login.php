@@ -8,7 +8,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     $user = $users_db->get_by_username($_POST["username"]);
 
-    if ($user && $user->test_password($_POST["password"])) {
+    if ($user && $user->testing_password($_POST["password"])) {
 
         session_start();
 
