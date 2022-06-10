@@ -1,0 +1,71 @@
+<?php
+
+require_once __DIR__ . "/Database.php";
+require_once __DIR__ . "/User.php";
+
+class UsersDatabase extends Database
+{
+
+
+    public function get_by_username($username)
+    {
+
+        $query = "SELECT * FROM users WHERE username = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("s", $username);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $db_user = mysqli_fetch_assoc($result);
+
+        $user = null;
+
+
+        if ($db_user) {
+
+            $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
+            $user->set_password_hash($db_user["passwordHash"]);
+        }
+
+        return $user;
+    }
+
+    public function create(User $user)
+    {
+
+        $query = "INSERT INTO users (username, passwordHash, `role`) VALUES (?, ?, ?)";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("sss", $user->username, $user->get_password_hash(), $user->role);
+
+        $success = $stmt->execute();
+
+        return $success;
+    }
+    public function delete_user_by_id($id){
+        $query = "DELETE FROM users WHERE id = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("i", $id);
+
+        $success = $stmt->execute();
+
+        return $success;
+    }
+    
+    public function edit_user(User $user, $id){
+        $query = "UPDATE users SET username = ?, `role` = ? WHERE id = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("ssi", $user->username, $user->role, $id);
+
+        return $stmt->execute();
+    }
+}
