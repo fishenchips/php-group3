@@ -80,9 +80,9 @@ class Template
         ?>
             <nav>
                 <h3>Admin stuff</h3>
-                <a href="/php-group3/pages/create-product.php">Create new product</a>
+                <a href="/php-group3/pages/admin-create-product.php">Create new product</a>
                 <a href="/php-group3/pages/admin-products.php">See all products</a>
-                <a href="/php-group3/pages/create-user.php">Create new user</a>
+                <a href="/php-group3/pages/admin-create-user.php">Create new user</a>
                 <a href="/php-group3/pages/admin-users.php">See all users</a>
                 <a href="/php-group3/pages/admin-orders.php">See all orders</a>
             </nav>
