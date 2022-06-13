@@ -17,7 +17,7 @@ else {
 }
 
 if($success) {
-    header ("Location: /php-group3/pages/admin-panel.php");
+    header ("Location: /php-group3/pages/admin-products.php");
 }
 else {
     echo "Error removing product from database";

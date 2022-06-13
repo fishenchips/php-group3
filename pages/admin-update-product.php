@@ -20,9 +20,9 @@ $product = $db->get_product($_GET["id"]);
     <h1>Update product with new info</h1>
 
         <form class="input-frame" action="/php-group3/admin-scripts/admin-post-update-product.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="New name"> <br>
-        <textarea name="description" placeholder="New description"></textarea> <br>
-        <input type="number" name="price" placeholder="New Price"> <br>
+        <input type="text" name="name" value="<?= $product->name ?>" placeholder="New name"> <br>
+        <textarea name="description" value="<?= $product->description ?>" placeholder="New description"></textarea> <br>
+        <input type="number" name="price" value="<?= $product->price ?>" placeholder="New Price"> <br>
         <input type="file" name="product-img" accept="image/*"> <br>
         <input type="submit" value="Update">
         </form>
