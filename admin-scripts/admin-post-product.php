@@ -5,6 +5,10 @@ require_once __DIR__ . "/../classes/Product.php";
 
 $success = false;
 
+if ($_POST["price"] <= 0) {
+    die("You will need to add a price to the product.");
+}
+
 if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price"])) {
 
     $upload_directory = __DIR__ . "/../assets/uploads/";
@@ -34,15 +38,15 @@ if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price
     }
 }
 else {
-    echo "Invalid input";
+    echo "Dont forget to add name and description to your product.";
     var_dump($_POST);
     die();
 }
 
 if ($success) {
-    header("Location: /php-group3/pages/admin-panel");
+    header("Location: /php-group3/pages/admin-products.php");
 }
 else {
-    echo "Failed to add product";
+    echo "Check so you have added a image to your product.";
     die();
 }
