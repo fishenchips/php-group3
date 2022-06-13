@@ -19,7 +19,6 @@ class Template
         $logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
 
         $is_admin =  $is_logged_in && $logged_in_user->admin == "admin";
-
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -36,7 +35,8 @@ class Template
 
         <body>
             <header class="header">
-                <h1><?= $topic ?></h1>
+                <h1>Crazy Games - Your choice for all board games</h1>
+                <h2><?= $topic ?></h2>
 
                 <nav>
                     <!-- visible for all -->
@@ -74,6 +74,21 @@ class Template
             </header>
         <?php
     }
+
+    public static function admin_header()
+    {
+        ?>
+            <nav>
+                <h3>Admin stuff</h3>
+                <a href="/php-group3/pages/create-product.php">Create new product</a>
+                <a href="/php-group3/pages/admin-products.php">See all products</a>
+                <a href="/php-group3/pages/create-user.php">Create new user</a>
+                <a href="/php-group3/pages/admin-users.php">See all users</a>
+                <a href="/php-group3/pages/admin-orders.php">See all orders</a>
+            </nav>
+        <?php
+    }
+
 
 
 
