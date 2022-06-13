@@ -42,18 +42,20 @@ class Template
                     <!-- visible for all -->
                     <a href="/php-group3">Home</a>
                     <a href="/php-group3/pages/products.php">Products</a>
+                    <a href="/php-group3/pages/basket.php">Cart</a>
 
-                    <!-- visible for ausers that are logged in -->
+                    <!-- visible for visitors -->
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
 
                         <!-- visible for admin only -->
                     <?php elseif ($is_admin) : ?>
-                        <a href="/shop/pages/admin.php">Admin</a>
+                        <a href="/shop/pages/admin-panel.php">Admin</a>
                     <?php endif ?>
                 </nav>
 
+                <!-- If user is logged in -->
                 <?php if ($is_logged_in) : ?>
                     <p>
                         Welcome back,
