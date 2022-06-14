@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/classes/User.php";
-require_once __DIR__ . "/classes/UsersDatabase.php";
+require_once __DIR__ . "/../classes/User.php";
+require_once __DIR__ . "/../classes/UsersDatabase.php";
 
  $db = new UsersDatabase();
  
