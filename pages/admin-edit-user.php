@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . "/classes/User.php";
-require_once __DIR__ . "/classes/UsersDatabase.php";
+require_once __DIR__ . "/../classes/User.php";
+require_once __DIR__ . "/../classes/UsersDatabase.php";
 
-$user_id = $_GET["id"];
+$username = $_GET["username"];
 
 $db = new UsersDatabase();
 
-$user = $db->get_by_username($user_id);
+$user = $db->get_by_username($username);
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +25,25 @@ $user = $db->get_by_username($user_id);
 <body>
     <h1>Edit User</h1>
 
-    <nav>
-        <a href="/php-group3/admin-post-edit-user.php?id=<?= $user->id ?>">Back to admin</a>
-    </nav>
-
     <hr>
 
     <form action="/php-group3/admin-post-edit-user.php" method="post">
-        <input type="hidden" name="id" value="<?= $user->id ?>"> 
-        <input type="text" name="username" placeholder="Username" value="<?= $user->username ?>"> <br>
-        <input type="text" name="password" placeholder="Password" value="<?= $user->password_hash ?>"> <br>
+        <input type="hidden" name="id" value="<?= $user->id ?>"> <br>
+        <label><?= $user->username ?></label> <br>
         <select name="role" id="role">
+            <option value="role" selected disabled>Role</option>
             <option value="admin">Admin</option>
-            <option value="user">User</option>
+            <option value="customer">User</option>
         </select>
         <br><br>
         <input type="submit" value="Save">
     </form>
+   
+    <hr>
+
+
+
+   
 
 
 </body>

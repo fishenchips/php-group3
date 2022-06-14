@@ -7,7 +7,7 @@ class User
     public $username;
     public $role;
 
-    private $password_hash;
+    protected $password_hash;
 
     public function __construct($username, $role, $id = 0)
     {

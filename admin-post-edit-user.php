@@ -1,28 +1,23 @@
 <?php
 
-require_once __DIR__ . "/../classes/UsersDatabase.php";
-require_once __DIR__ . "/../classes/User.php";
+require_once __DIR__ . "/classes/User.php";
+require_once __DIR__ . "/classes/UsersDatabase.php";
+
+$db = new UsersDatabase();
 
 $success = false;
 
-if (isset($_POST["username"]) && isset($_POST["role"]) && isset($_POST["id"])) {
-    $user_username = $_POST["username"];
+if (isset($_POST["role"]) && isset($_POST["id"])) {
     $user_role = $_POST["role"];
     $user_id = $_POST["id"];
 
-    $user = new User($user_username, $user_role);
-
-    $db = new UsersDatabase();
-
-   $success = $db->edit_user($user, $user_id);
+    $success = $db->update($user_role, $user_id);
 }
 else{
     echo "Invalid input";
 }
-
-
 if ($success) {
-    header("Location: /php-group3/admin-post-edit-user.php?id=".$_POST["id"]);
+    header("Location: /php-group3/pages/admin.php");
 } else {
     echo "Error saving edited user to database";
 }

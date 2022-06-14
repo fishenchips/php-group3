@@ -6,7 +6,6 @@ require_once __DIR__ . "/User.php";
 class UsersDatabase extends Database
 {
 
-
     public function get_by_username($username)
     {
 
@@ -22,21 +21,35 @@ class UsersDatabase extends Database
 
         $db_user = mysqli_fetch_assoc($result);
 
-        $user = null;
-
-
-        if ($db_user) {
-
-            $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
-            $user->set_password_hash($db_user["passwordHash"]);
+        if($db_user == null){
+            return null;
         }
+        
+        $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
 
+        $user->set_password_hash($db_user["passwordHash"]); 
+        
         return $user;
+    }
+    // get all
+
+    public function get_all(){
+        $query = "SELECT * FROM users";
+
+        $result = mysqli_query($this->conn, $query);
+
+        $db_users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        $users = [];
+        foreach($db_users as $db_user){
+            $user = new User($db_user["username"], $db_user["role"], $db_user["id"]);
+            $users[] = $user;
+        }
+        return $users;
     }
 
     public function create(User $user)
     {
-
         $query = "INSERT INTO users (username, passwordHash, `role`) VALUES (?, ?, ?)";
 
         $stmt = mysqli_prepare($this->conn, $query);
@@ -47,7 +60,7 @@ class UsersDatabase extends Database
 
         return $success;
     }
-    public function delete_user_by_id($id){
+    public function delete($id){
         $query = "DELETE FROM users WHERE id = ?";
 
         $stmt = mysqli_prepare($this->conn, $query);
@@ -59,13 +72,15 @@ class UsersDatabase extends Database
         return $success;
     }
     
-    public function edit_user(User $user, $id){
-        $query = "UPDATE users SET username = ?, `role` = ? WHERE id = ?";
+    public function update($role, $id){
+        $query = "UPDATE users SET `role` = ? WHERE id = ?";
 
         $stmt = mysqli_prepare($this->conn, $query);
 
-        $stmt->bind_param("ssi", $user->username, $user->role, $id);
+        $stmt->bind_param("si", $role, $id);
 
-        return $stmt->execute();
+        $success = $stmt->execute();
+
+        return $success;
     }
 }
