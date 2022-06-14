@@ -27,7 +27,7 @@ $user = $db->get_by_username($username);
 
     <hr>
 
-    <form action="/php-group3/admin-post-edit-user.php" method="post">
+    <form action="/php-group3/admin-scripts/admin-post-edit-user.php" method="post">
         <input type="hidden" name="id" value="<?= $user->id ?>"> <br>
         <label><?= $user->username ?></label> <br>
         <select name="role" id="role">
