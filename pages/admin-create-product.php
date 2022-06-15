@@ -1,23 +1,31 @@
-<?php 
+<?php
 
+require_once __DIR__ . "/../classes/Template.php";
+
+$is_logged_in = isset($_SESSION["user"]);
+
+$logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
+
+$is_admin = $is_logged_in && $logged_in_user->role == "admin";
+
+if (!$is_admin) {
+    http_response_code(401); //unauthorized
+    die("Access denied");
+}
+
+Template::header("Create Product", "");
+
+Template::admin_header();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Product</title>
-</head>
-<body>
 
-    <form action="/php-group3/admin-scripts/admin-post-product.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Name"> <br>
-        <textarea name="description" placeholder="Description"></textarea> <br>
-        <input type="number" name="price" placeholder="Price"> <br>
-        <input type="file" name="product-img" accept="image/*"> <br>
-        <input type="submit" value="Save">
-    </form>
-    
-</body>
-</html>
+<form action="/php-group3/admin-scripts/admin-post-product.php" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Name"> <br>
+    <textarea name="description" placeholder="Description"></textarea> <br>
+    <input type="number" name="price" placeholder="Price"> <br>
+    <input type="file" name="product-img" accept="image/*"> <br>
+    <input type="submit" value="Save">
+</form>
+
+<?php
+
+Template::footer();
