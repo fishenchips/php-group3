@@ -1,9 +1,9 @@
 <?php
 
 //load in user class prior to starting the session
-/* 
+
 require_once __DIR__ . "/User.php";
-*/
+
 
 // start the session to check for loggedInStatus
 session_start();
@@ -18,7 +18,7 @@ class Template
 
         $logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
 
-        $is_admin =  $is_logged_in && $logged_in_user->admin == "admin";
+        $is_admin =  $is_logged_in && $logged_in_user->role == "admin";
 
         //adding varibable to count number of items in cart
         $cart_count = isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0;
@@ -54,7 +54,7 @@ class Template
 
                         <!-- visible for admin only -->
                     <?php elseif ($is_admin) : ?>
-                        <a href="/shop/pages/admin-panel.php">Admin</a>
+                        <a href="/php-group3/pages/admin-panel.php">Admin</a>
                     <?php endif ?>
                 </nav>
 

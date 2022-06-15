@@ -1,21 +1,10 @@
 <?php
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="/php-group3/assets/products.css">
-</head>
-<body>
-    
-    <nav>
-        <a href="/php-group3/pages/admin-create-product.php">Create product</a>
-        <a href="/php-group3/pages/admin-products.php">See all products</a>
-    </nav>
+require_once __DIR__ . "/../classes/Template.php";
 
-</body>
-</html>
+
+Template::header("Admin Panel", "");
+
+Template::admin_header();
+
+Template::footer();
