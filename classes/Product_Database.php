@@ -41,23 +41,28 @@ class Product_Database extends Database {
 
         $db_product = mysqli_fetch_assoc($result);
 
+        $product = null;
+        
+        if ($db_product) {
+
             $db_id = $db_product["id"];
             $db_name = $db_product["name"];
             $db_description = $db_product["description"];
             $db_price = $db_product["price"];
             $db_img_url = $db_product["imgUrl"];
 
-        $product = new Product($db_name, $db_description, $db_price, $db_img_url, $db_id);
+            $product = new Product($db_name, $db_description, $db_price, $db_img_url, $db_id);
+        }
         
         return $product;
     }
 
-    public function update_product(Product $product) {
-        $query = "UPDATE tasks SET `name`= ?, `description`= ?, `price`= ?, `imgUrl`= ? WHERE id = ?";
+    public function update_product(Product $product, $id) {
+        $query = "UPDATE products SET `name`= ?, `description`= ?, `price`= ?, `imgUrl`= ? WHERE id = ?";
 
         $stmt = mysqli_prepare($this->conn, $query);
 
-        $stmt->bind_param("ssisi", $product->name, $product->description, $product->price, $product->product_img, $product->id);
+        $stmt->bind_param("ssisi", $product->name, $product->description, $product->price, $product->product_img, $id);
 
         return $stmt->execute();
     }

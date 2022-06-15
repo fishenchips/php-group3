@@ -1,13 +1,14 @@
 <?php
 
-// Under construction 
 require_once __DIR__ . "/../classes/Product_Database.php";
-
-$db = new Product_Database();
 
 $success = false;
 
-if (isset($_POST["name"], $_POST["description"], $_POST["id"])) {
+if ($_POST["price"] <= 0) {
+    die("Your price value can't be less then 1.");
+}
+
+if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_GET["id"])) {
 
     $upload_directory = __DIR__ . "/../assets/uploads/";
 
@@ -27,9 +28,13 @@ if (isset($_POST["name"], $_POST["description"], $_POST["id"])) {
 
     $success = move_uploaded_file($_FILES["product-img"]["tmp_name"], $full_upload_path);
 
-    $updated_product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url, $_POST["id"]);
+    if($success) {
+        $updated_product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url);
+        
+        $db = new Product_Database();
 
-    $success = $db->update_product($updated_product);
+        $success = $db->update_product($updated_product, $_GET["id"]);
+    }
 }
 else {
     echo "Invalid input";
@@ -37,8 +42,8 @@ else {
 }
 
 if($success) {
-    header ("Location: /php-group3/pages/admin-panel");
+    header ("Location: /php-group3/pages/admin-products.php");
 }
 else {
-    echo "Error updating product to database";
+    echo "Error updating product to database, when updating a product you always need to choose a img.";
 }
