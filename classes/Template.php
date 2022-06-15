@@ -19,6 +19,9 @@ class Template
         $logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
 
         $is_admin =  $is_logged_in && $logged_in_user->admin == "admin";
+
+        //adding varibable to count number of items in cart
+        $cart_count = isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0;
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -42,7 +45,7 @@ class Template
                     <!-- visible for all -->
                     <a href="/php-group3">Home</a>
                     <a href="/php-group3/pages/products.php">Products</a>
-                    <a href="/php-group3/pages/basket.php">Cart</a>
+                    <a href="/php-group3/pages/basket.php">Cart (<?= $cart_count ?>)</a>
 
                     <!-- visible for visitors -->
                     <?php if (!$is_logged_in) : ?>

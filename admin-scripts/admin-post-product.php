@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . "/../classes/Product_Database.php";
 require_once __DIR__ . "/../classes/Product.php";
@@ -29,15 +29,14 @@ if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price
 
     $success = move_uploaded_file($_FILES["product-img"]["tmp_name"], $full_upload_path);
 
-    if($success) {
+    if ($success) {
         $product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url);
 
         $db = new Product_Database();
 
         $success = $db->save_product($product);
     }
-}
-else {
+} else {
     echo "Dont forget to add name and description to your product.";
     var_dump($_POST);
     die();
@@ -45,8 +44,7 @@ else {
 
 if ($success) {
     header("Location: /php-group3/pages/admin-products.php");
-}
-else {
+} else {
     echo "Check so you have added a image to your product.";
     die();
 }
