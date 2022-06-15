@@ -60,6 +60,7 @@ class UsersDatabase extends Database
 
         return $success;
     }
+    
     public function delete($id){
         $query = "DELETE FROM users WHERE id = ?";
 
