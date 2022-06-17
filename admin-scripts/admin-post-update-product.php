@@ -32,35 +32,20 @@ if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price
 
     $success = move_uploaded_file($_FILES["product-img"]["tmp_name"], $full_upload_path);
 
-    if($success) {
+    if ($success) {
         $updated_product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url);
-        
+
         $db = new Product_Database();
 
-<<<<<<< HEAD
-    $success = $db->update_product($updated_product);
-} else {
-=======
         $success = $db->update_product($updated_product, $_GET["id"]);
     }
-}
-else {
->>>>>>> adam
+} else {
     echo "Invalid input";
     var_dump($_POST);
 }
 
-<<<<<<< HEAD
 if ($success) {
-    header("Location: /php-group3/pages/admin-panel");
+    header("Location: /php-group3/pages/admin-products.php");
 } else {
-    echo "Error updating product to database";
-}
-=======
-if($success) {
-    header ("Location: /php-group3/pages/admin-products.php");
-}
-else {
     echo "Error updating product to database, when updating a product you always need to choose a img.";
 }
->>>>>>> adam
