@@ -1,5 +1,5 @@
 <?php 
-// Under construction
+
 require_once __DIR__ . "/../classes/Product_Database.php";
 
 $db = new Product_Database();
@@ -19,9 +19,9 @@ $product = $db->get_product($_GET["id"]);
 <body>
     <h1>Update product with new info</h1>
 
-        <form class="input-frame" action="/php-group3/admin-scripts/admin-post-update-product.php" method="post" enctype="multipart/form-data">
+        <form class="input-frame" action="/php-group3/admin-scripts/admin-post-update-product.php?id=<?= $_GET["id"] ?>" method="post" enctype="multipart/form-data">
         <input type="text" name="name" value="<?= $product->name ?>" placeholder="New name"> <br>
-        <textarea name="description" value="<?= $product->description ?>" placeholder="New description"></textarea> <br>
+        <textarea name="description" placeholder="New description"><?= $product->description ?></textarea> <br>
         <input type="number" name="price" value="<?= $product->price ?>" placeholder="New Price"> <br>
         <input type="file" name="product-img" accept="image/*"> <br>
         <input type="submit" value="Update">
