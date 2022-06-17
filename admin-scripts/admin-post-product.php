@@ -3,6 +3,8 @@
 require_once __DIR__ . "/../classes/Product_Database.php";
 require_once __DIR__ . "/../classes/Product.php";
 
+require_once __DIR__ . "/force-admin.php";
+
 $success = false;
 
 if ($_POST["price"] <= 0) {

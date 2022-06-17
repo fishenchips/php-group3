@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../classes/Product_Database.php";
 
+require_once __DIR__ . "/force-admin.php";
+
 $success = false;
 
 if (isset($_POST["id"])) {
@@ -10,15 +12,12 @@ if (isset($_POST["id"])) {
     $product_id = $_POST["id"];
 
     $success = $db->delete_product($product_id);
-
-}
-else {
+} else {
     echo "Invalid input";
 }
 
-if($success) {
-    header ("Location: /php-group3/pages/admin-products.php");
-}
-else {
+if ($success) {
+    header("Location: /php-group3/pages/admin-products.php");
+} else {
     echo "Error removing product from database";
 }

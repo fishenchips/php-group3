@@ -3,6 +3,8 @@
 // Under construction 
 require_once __DIR__ . "/../classes/Product_Database.php";
 
+require_once __DIR__ . "/force-admin.php";
+
 $db = new Product_Database();
 
 $success = false;
@@ -30,15 +32,13 @@ if (isset($_POST["name"], $_POST["description"], $_POST["id"])) {
     $updated_product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url, $_POST["id"]);
 
     $success = $db->update_product($updated_product);
-}
-else {
+} else {
     echo "Invalid input";
     var_dump($_POST);
 }
 
-if($success) {
-    header ("Location: /php-group3/pages/admin-panel");
-}
-else {
+if ($success) {
+    header("Location: /php-group3/pages/admin-panel");
+} else {
     echo "Error updating product to database";
 }
