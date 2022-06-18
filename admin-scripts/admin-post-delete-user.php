@@ -19,7 +19,7 @@ if (isset($_POST["id"])) {
 }
 
 if ($success) {
-    header("Location: /php-group3/pages/admin-panel.php");
+    header("Location: /php-group3/pages/admin-users.php");
 } else {
 
     echo "Error deleting user";
