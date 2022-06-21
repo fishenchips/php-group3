@@ -31,9 +31,10 @@ Template::header("Products", "products")
                 <input type="hidden" name="id" value="<?= $product->id ?>">
                 <input type="submit" value="Read more">
             </form>
-            <form action="/php-group3/pages/basket.php" method="post">
+            <!-- add to cart -->
+            <form action="/php-group3/scripts/post-add-to-cart.php" method="post">
                 <input type="hidden" name="id" value="<?= $product->id ?>">
-                <input type="submit" value="Add to basket">
+                <input type="submit" value="Add to cart">
             </form>
         </div>
     <?php endforeach; ?>
