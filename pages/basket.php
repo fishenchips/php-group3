@@ -14,10 +14,11 @@ Template::header("Shopping Cart", "");
         <h3>Your cart is empty..</h3>
     <?php endif ?>
 
-    <form action="/php-group-3/scripts/post-create-order.php" method="POST">
+    <form action="/php-group3/scripts/post-create-order.php" method="POST">
         <?php foreach ($products as $product) : ?>
 
             <div class="product-container">
+                <input type="hidden" name="id[]" value="<?= $product->id ?>">
                 <b> <?= $product->name ?> </b>
                 <p> <?= $product->price ?> kr</p>
             </div>
