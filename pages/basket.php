@@ -13,14 +13,18 @@ Template::header("Shopping Cart", "");
     <?php if ($_SESSION["cart"] == []) : ?>
         <h3>Your cart is empty..</h3>
     <?php endif ?>
-    <?php foreach ($products as $product) : ?>
 
-        <div class="product-container">
-            <b> <?= $product->name ?> </b>
-            <p> <?= $product->price ?> kr</p>
-        </div>
+    <form action="/php-group-3/scripts/post-create-order.php" method="POST">
+        <?php foreach ($products as $product) : ?>
 
-    <?php endforeach ?>
+            <div class="product-container">
+                <b> <?= $product->name ?> </b>
+                <p> <?= $product->price ?> kr</p>
+            </div>
+
+        <?php endforeach ?>
+        <input type="submit" value="Purchase">
+    </form>
 </div>
 <?php
 Template::footer();
