@@ -38,6 +38,23 @@ class OrdersDatabase extends Database
         return $orders;
     }
 
+    public function get_orders_by_customer_id($customer_id)
+    {
+        $query = "SELECT * FROM orders WHERE customerId = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("i", $customer_id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $orders;
+    }
+
     public function add_order_to_product_orders($order_id, $product_id)
     {
         $query = "INSERT INTO `product_orders` (orderId, productId) VALUES (?, ?)";
