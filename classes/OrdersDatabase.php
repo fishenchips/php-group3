@@ -16,6 +16,28 @@ class OrdersDatabase extends Database
         return $stmt->execute();
     }
 
+    public function get_all_loans()
+    {
+        $query = "SELECT * FROM loans";
+
+        $result = mysqli_query($this->conn, $query);
+
+        $db_orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        $orders = [];
+
+        foreach ($db_orders as $db_order) {
+            $customer_id = $db_order["customerId"];
+            $status = $db_order["status"];
+            $date = $db_order["date"];
+            $id = $db_order["id"];
+
+            $orders[] = new Order($customer_id, $status, $date, $id);
+        }
+
+        return $orders;
+    }
+
     public function add_order_to_product_orders($order_id, $product_id)
     {
         $query = "INSERT INTO `product_orders` (orderId, productId) VALUES (?, ?)";
