@@ -16,9 +16,9 @@ class OrdersDatabase extends Database
         return $stmt->execute();
     }
 
-    public function get_all_loans()
+    public function get_all_orders()
     {
-        $query = "SELECT * FROM loans";
+        $query = "SELECT * FROM orders";
 
         $result = mysqli_query($this->conn, $query);
 
