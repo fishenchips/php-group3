@@ -14,6 +14,8 @@ $success2 = false;
 if (isset($_POST["id"]) && isset($_SESSION["user"])) {
     $product_id = $_POST["id"];
 
+    var_dump($product_id);
+
     $user = $_SESSION["user"];
 
     var_dump($user);
@@ -26,14 +28,15 @@ if (isset($_POST["id"]) && isset($_SESSION["user"])) {
 
     $order = new Order($user->id, $status, $current_date);
 
+    $product_order = new ProductOrder($order->id, $product_id);
+
     $success1 = $orders_db->add_order_to_orders($order);
 
-    $success2 = $orders_db->add_order_to_product_orders($order->id, $product_id);
+    $success2 = $orders_db->add_order_to_product_orders($product_order);
 
-    //gives me null
-    var_dump($order->id);
-    //gives me false
-    var_dump($success2);
+
+    //gives me false --> orderId i product_orders är null för även id i orders är null
+    var_dump($product_order);
 } else {
     die("You need to be logged in to place an order");
 }

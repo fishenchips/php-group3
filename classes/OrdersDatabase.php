@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/Database.php";
 require_once __DIR__ . "/Order.php";
+require_once __DIR__ . "/ProductOrder.php";
 
 class OrdersDatabase extends Database
 {
@@ -55,14 +56,16 @@ class OrdersDatabase extends Database
         return $orders;
     }
 
-    public function add_order_to_product_orders($order_id, $product_id)
+    public function add_order_to_product_orders(ProductOrder $product_order/* $order_id, $product_id */)
     {
         $query = "INSERT INTO `product_orders` (orderId, productId) VALUES (?, ?)";
 
         $stmt = mysqli_prepare($this->conn, $query);
 
-        $stmt->bind_param("ii", $order_id, $product_id);
+        $stmt->bind_param("ii", $product_order->order_id, $product_order->product_id);
 
+        /*         $stmt->bind_param("ii", $order_id, $product_id);
+ */
         return $stmt->execute();
     }
 }
