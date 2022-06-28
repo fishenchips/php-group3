@@ -39,6 +39,34 @@ class OrdersDatabase extends Database
         return $orders;
     }
 
+    public function get_order_by_id($id)
+    {
+        $query = "SELECT * FROM orders WHERE id = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $db_order = mysqli_fetch_assoc($result);
+
+        $order = null;
+
+        if ($db_order) {
+            $db_id = $db_order["id"];
+            $db_customer_id = $db_order["customerId"];
+            $db_status = $db_order["status"];
+            $db_date = $db_order["date"];
+
+            $order = new Order($db_customer_id, $db_status, $db_date, $db_id);
+        }
+
+        return $order;
+    }
+
     public function get_orders_by_customer_id($customer_id)
     {
         $query = "SELECT * FROM orders WHERE customerId = ?";
@@ -56,6 +84,8 @@ class OrdersDatabase extends Database
         return $orders;
     }
 
+
+    //WORKING PROCESS
     public function add_order_to_product_orders(ProductOrder $product_order/* $order_id, $product_id */)
     {
         $query = "INSERT INTO `product_orders` (orderId, productId) VALUES (?, ?)";
