@@ -42,3 +42,13 @@ if (isset($_POST["id"]) && isset($_SESSION["user"])) {
 }
 
 var_dump($order);
+
+// need to add for both checks
+if ($success1) {
+    //empty cart
+    $_SESSION["cart"] = null;
+
+    var_dump($_SESSION);
+
+    //redirect
+}
