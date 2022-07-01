@@ -61,6 +61,7 @@ class Template
 
                         <!-- visible for admin only -->
                     <?php elseif ($is_admin) : ?>
+                        <a href="/php-group3/pages/orders.php">Orders</a>
                         <a href="/php-group3/pages/admin-panel.php">Admin</a>
                     <?php endif ?>
                 </nav>

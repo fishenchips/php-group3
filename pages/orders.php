@@ -9,9 +9,9 @@ $is_logged_in = isset($_SESSION["user"]);
 
 $logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
 
-$is_customer = $is_logged_in && $logged_in_user->role == "customer";
+//$is_customer = $is_logged_in && $logged_in_user->role == "customer";
 
-if (!$is_customer) {
+if (!$logged_in_user) {
     http_response_code(401); //unauthorized
     die("Access denied");
 }
