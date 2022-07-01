@@ -20,6 +20,8 @@ class Template
 
         $is_admin =  $is_logged_in && $logged_in_user->role == "admin";
 
+        $is_customer = $is_logged_in && $logged_in_user->role == "customer";
+
         //adding varibable to count number of items in cart
         $cart_count = isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0;
 ?>
@@ -51,6 +53,11 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
+
+                        <!-- visible for customers only -->
+                    <?php elseif ($is_customer) : ?>
+                        <a href="/php-group3/pages/support.php">Support</a>
+                        <a href="/php-group3/pages/orders.php">Orders</a>
 
                         <!-- visible for admin only -->
                     <?php elseif ($is_admin) : ?>
