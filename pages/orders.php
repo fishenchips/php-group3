@@ -9,8 +9,6 @@ $is_logged_in = isset($_SESSION["user"]);
 
 $logged_in_user = $is_logged_in ? $_SESSION["user"] : null;
 
-//$is_customer = $is_logged_in && $logged_in_user->role == "customer";
-
 if (!$logged_in_user) {
     http_response_code(401); //unauthorized
     die("Access denied");
@@ -24,4 +22,27 @@ $orders = $orders_db->get_orders_by_customer_id($user->id);
 
 Template::header("Your Orders", "");
 
-var_dump($orders);
+foreach ($orders as $order) : ?>
+    <ul>
+        <li>
+            <div>
+
+                <h5>
+                    Order number: <?= $order["id"] ?>
+                </h5>
+
+
+                <em>
+                    status: <?= $order["status"] ?>
+                </em>
+
+                <p>
+                    products : ADD INFO WHEN productorders work
+                </p>
+            </div>
+        </li>
+    </ul>
+
+<?php endforeach;
+
+Template::footer();
