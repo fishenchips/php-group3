@@ -19,7 +19,7 @@ if (!$is_admin) {
 $orders_db = new OrdersDatabase();
 
 $order = $orders_db->get_order_by_id($_GET["id"]);
-var_dump($order);
+
 Template::header("Order {$_GET["id"]}", "");
 ?>
 <div>
@@ -27,16 +27,21 @@ Template::header("Order {$_GET["id"]}", "");
 
     <p>Products: NEED productORDERS TO WORK FOR THIS</p>
 
-    <p>status:
-        <em>
-            <?= $order->status ?>
-        </em>
-    </p>
+    <?php if ($order->status == "sent") : ?>
+        <form action="/php-group3/admin-scripts/admin-post-update-order.php" method="POST">
+            <label>Order is sent to customer</label>
+            <input type="checkbox" name="status" checked disabled>
+        </form>
 
-    <form action="" method="POST">
-        <label>Press to send to customer</label>
-        <input type="checkbox" name="status" checked disabled>
-    </form>
+    <?php else : ?>
+
+        <form action="/php-group3/admin-scripts/admin-post-update-order.php" method="POST">
+            <label>Press to send to customer</label>
+            <input type="hidden" name="id" value="<?= $order->id ?>">
+            <input type="checkbox" name="status">
+            <input type="submit" value="Send">
+        </form>
+    <?php endif ?>
 </div>
 
 
