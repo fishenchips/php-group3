@@ -14,11 +14,11 @@ $success2 = false;
 if (isset($_POST["id"]) && isset($_SESSION["user"])) {
     $product_id = $_POST["id"];
 
-    var_dump($product_id);
+    // WORKS var_dump($product_id);
 
     $user = $_SESSION["user"];
 
-    var_dump($user);
+    // WORKS var_dump($user);
 
     $orders_db = new OrdersDatabase();
 
@@ -28,9 +28,17 @@ if (isset($_POST["id"]) && isset($_SESSION["user"])) {
 
     $order = new Order($user->id, $status, $current_date);
 
-    $product_order = new ProductOrder($order->id, $product_id);
-
     $success1 = $orders_db->add_order_to_orders($order);
+
+    $all_orders = $orders_db->get_all_orders();
+
+    $latest_order = $orders_db->get_order_by_id($order->id);
+
+    //ADDS THE NEW orderId 
+    // Om jag renderar ut listan på samtliga orders så får jag ut ID:t men hjälper inte nedan.
+    var_dump($latest_order);
+
+    $product_order = new ProductOrder($order->id, $product_id);
 
     $success2 = $orders_db->add_order_to_product_orders($product_order);
 
