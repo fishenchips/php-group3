@@ -41,12 +41,20 @@ foreach ($orders as $order) :
                     status: <?= $order["status"] ?>
                 </em>
 
+                <!-- fix structure, add img, price and then same on admin panel -->
+                <?php foreach ($order_products as $product) : ?>
+                    <div>
+                        <p>
+                            <?= $product["name"] ?>
+                        </p>
 
-                <?php foreach ($order_products as $products) : ?>
-                    <p>
-                        products : <?= $products["name"] ?>
-                    </p> <?php endforeach ?>
-            </div>
+                        <img src="<?= $product["imgUrl"] ?>" height="40" width="40" alt="<?= $product["name"] ?>">
+
+                        <p> <?= $product["price"] ?> kr</p>
+                    </div>
+
+
+                <?php endforeach ?>
         </li>
     </ul>
 
