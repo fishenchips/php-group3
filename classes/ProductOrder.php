@@ -16,6 +16,3 @@ class ProductOrder
         $this->product_id = $product_id;
     }
 }
-// skapa klassen,
-// ändra variablerna i  add_order_to_product_orders($order_id, $product_id)
-// hitta hur man postar flera id samma sätt

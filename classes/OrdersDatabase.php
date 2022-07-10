@@ -102,9 +102,7 @@ class OrdersDatabase extends Database
         return $stmt->execute();
     }
 
-
-    //WORKING PROCESS
-    public function add_order_to_product_orders(ProductOrder $product_order/* $order_id, $product_id */)
+    public function add_order_to_product_orders(ProductOrder $product_order)
     {
         $query = "INSERT INTO `product_orders` (orderId, productId) VALUES (?, ?)";
 
@@ -112,8 +110,26 @@ class OrdersDatabase extends Database
 
         $stmt->bind_param("ii", $product_order->order_id, $product_order->product_id);
 
-        /*         $stmt->bind_param("ii", $order_id, $product_id);
- */
         return $stmt->execute();
+    }
+
+    public function get_products_by_order_id($order_id)
+    {
+        $query = "SELECT * FROM `product_orders` 
+            JOIN orders ON orders.id = `product_orders`.orderId
+            JOIN products ON products.id = `product_orders`.productId
+            WHERE orderId = ?";
+
+        $stmt = mysqli_prepare($this->conn, $query);
+
+        $stmt->bind_param("i", $order_id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $products;
     }
 }

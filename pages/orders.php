@@ -4,6 +4,7 @@ require_once __DIR__ . "/../classes/Template.php";
 require_once __DIR__ . "/../classes/User.php";
 require_once __DIR__ . "/../classes/UsersDatabase.php";
 require_once __DIR__ . "/../classes/OrdersDatabase.php";
+require_once __DIR__ . "/../classes/Product.php";
 
 $is_logged_in = isset($_SESSION["user"]);
 
@@ -20,9 +21,13 @@ $orders_db = new OrdersDatabase();
 
 $orders = $orders_db->get_orders_by_customer_id($user->id);
 
+
 Template::header("Your Orders", "");
 
-foreach ($orders as $order) : ?>
+foreach ($orders as $order) :
+
+    $order_products = $orders_db->get_products_by_order_id($order["id"]);
+?>
     <ul>
         <li>
             <div>
@@ -36,9 +41,11 @@ foreach ($orders as $order) : ?>
                     status: <?= $order["status"] ?>
                 </em>
 
-                <p>
-                    products : ADD INFO WHEN productorders work
-                </p>
+
+                <?php foreach ($order_products as $products) : ?>
+                    <p>
+                        products : <?= $products["name"] ?>
+                    </p> <?php endforeach ?>
             </div>
         </li>
     </ul>
