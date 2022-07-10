@@ -14,7 +14,14 @@ class OrdersDatabase extends Database
 
         $stmt->bind_param("iss", $order->customer_id, $order->status, $order->date);
 
-        return $stmt->execute();
+        $success = $stmt->execute();
+
+        //want to return id of the order
+        if ($success) {
+            return $stmt->insert_id;
+        }
+
+        return $success;
     }
 
     public function get_all_orders()

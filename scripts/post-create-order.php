@@ -4,21 +4,23 @@ require_once __DIR__ . "/../classes/User.php";
 require_once __DIR__ . "/../classes/Order.php";
 require_once __DIR__ . "/../classes/OrdersDatabase.php";
 
+//Needed for cart array content stop being incomplete objects
+require_once __DIR__ . "/../classes/Product.php";
+require_once __DIR__ . "/../classes/Product_Database.php";
+
 session_start();
 
-$success1 = false;
+$cart = $_SESSION["cart"];
 
-$success2 = false;
+$order_sucess = false;
 
+$product_order = false;
 
-if (isset($_POST["id"]) && isset($_SESSION["user"])) {
-    $product_id = $_POST["id"];
+if (/* isset($_POST["id"]) && */isset($_SESSION["user"])) {
 
-    // WORKS var_dump($product_id);
+    /* $product_id = $_POST["id"]; */
 
     $user = $_SESSION["user"];
-
-    // WORKS var_dump($user);
 
     $orders_db = new OrdersDatabase();
 
@@ -28,35 +30,26 @@ if (isset($_POST["id"]) && isset($_SESSION["user"])) {
 
     $order = new Order($user->id, $status, $current_date);
 
-    $success1 = $orders_db->add_order_to_orders($order);
+    $order_sucess = $orders_db->add_order_to_orders($order);
 
-    $all_orders = $orders_db->get_all_orders();
+    foreach ($cart as $cart_item) {
 
-    $latest_order = $orders_db->get_order_by_id($order->id);
+        $order_id = $order_sucess;
 
-    //ADDS THE NEW orderId 
-    // Om jag renderar ut listan på samtliga orders så får jag ut ID:t men hjälper inte nedan.
-    var_dump($latest_order);
+        $product_id = $cart_item->id;
 
-    $product_order = new ProductOrder($order->id, $product_id);
+        $product_order = new ProductOrder($order_id, $product_id);
 
-    $success2 = $orders_db->add_order_to_product_orders($product_order);
-
-
-    //gives me false --> orderId i product_orders är null för även id i orders är null
-    var_dump($product_order);
+        $product_order = $orders_db->add_order_to_product_orders($product_order);
+    }
 } else {
     die("You need to be logged in to place an order");
 }
 
-var_dump($order);
-
 // need to add for both checks
-if ($success1) {
+if ($order_sucess && $product_order) {
     //empty cart
     $_SESSION["cart"] = null;
 
-    var_dump($_SESSION);
-
-    //redirect
+    header("Location: /php-group3/pages/orders.php");
 }
