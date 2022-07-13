@@ -25,9 +25,9 @@ Template::header("Product", "product")
         <?= $product->price ?>
     </p>
 
-    <form action="/php-group3/pages/basket.php" method="post">
+    <form action="/php-group3/scripts/post-add-to-cart.php" method="post">
         <input type="hidden" name="id" value="<?= $product->id ?>">
-        <input type="submit" value="Add to basket">
+        <input type="submit" value="Add to cart">
     </form>
 </div>
 

@@ -53,11 +53,15 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
-                    <!-- visible for customers only -->
+
+                        <!-- visible for customers only -->
                     <?php elseif ($is_customer) : ?>
                         <a href="/php-group3/pages/support.php">Support</a>
+                        <a href="/php-group3/pages/orders.php">Orders</a>
+
                         <!-- visible for admin only -->
                     <?php elseif ($is_admin) : ?>
+                        <a href="/php-group3/pages/orders.php">Orders</a>
                         <a href="/php-group3/pages/admin-panel.php">Admin</a>
                     <?php endif ?>
                 </nav>
