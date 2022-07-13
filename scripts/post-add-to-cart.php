@@ -21,7 +21,7 @@ if (isset($_POST["id"])) {
     if ($product) {
         $_SESSION["cart"][] = $product;
 
-        header("Location: /php-group3/pages/basket.php");
+        header("Location: /php-group3/pages/products.php");
         //stop the script
         die();
     }
