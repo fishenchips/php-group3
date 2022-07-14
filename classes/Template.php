@@ -4,8 +4,12 @@
 
 require_once __DIR__ . "/User.php";
 
-// start the session to check for loggedInStatus
-session_start();
+//Include Google Configuration File
+require_once __DIR__ . "/../google-config.php";
+// OVAN BEHÖVER LIGGA EFTER CLASSERNA FÖR VI KAN INTE STARTA SESSIONEN INNAN DESS
+
+$google_login_btn = '<a href="' . $google_client->createAuthUrl() . '">Login with Google</a>';
+//session_start();  --> behövs inte nu för att den finns redan i google config..
 
 class Template
 {
@@ -52,6 +56,7 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
+                        <?= $google_login_btn ?>
 
                         <!-- visible for customers only -->
                     <?php elseif ($is_customer) : ?>
