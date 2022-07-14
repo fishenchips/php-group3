@@ -6,4 +6,4 @@ $google_client->revokeToken();
 //Destroy entire session data.
 session_destroy();
 //redirect page to index.php
-header('Location: index.php');
+header('Location: /php-group3');
