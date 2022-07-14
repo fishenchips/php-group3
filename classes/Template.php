@@ -4,7 +4,6 @@
 
 require_once __DIR__ . "/User.php";
 
-
 // start the session to check for loggedInStatus
 session_start();
 
@@ -69,7 +68,7 @@ class Template
                 <!-- If user is logged in -->
                 <?php if ($is_logged_in) : ?>
                     <p>
-                        Welcome back, 
+                        Welcome back,
                         <b>
                             <?= $logged_in_user->username ?>
                             <!-- extra info to show user is logged in as admin -->
