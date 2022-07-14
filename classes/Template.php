@@ -2,7 +2,11 @@
 
 //load in user class prior to starting the session
 
+//testing to add
+require_once __DIR__ . "/UsersDatabase.php";
+
 require_once __DIR__ . "/User.php";
+
 
 //Include Google Configuration File
 require_once __DIR__ . "/../google-config.php";

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/classes/Database.php";
+require_once __DIR__ . "/classes/UsersDatabase.php";
 require_once __DIR__ . "/classes/User.php";
 
 //Include Google Configuration File

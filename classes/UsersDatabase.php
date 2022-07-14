@@ -97,11 +97,11 @@ class UsersDatabase extends Database
         //2. Om inte, skapa användaren
         if ($db_user == null) {
 
-            $query = "INSERT INTO users (username) VALUES (?)";
+            $query = "INSERT INTO users (username, `role`) VALUES (?, ?)";
 
             $stmt = mysqli_prepare($this->conn, $query);
 
-            $stmt->bind_param("s", $user->username);
+            $stmt->bind_param("ss", $user->username, $user->role);
 
             $success = $stmt->execute();
 
