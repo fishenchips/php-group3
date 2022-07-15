@@ -7,12 +7,11 @@ require_once __DIR__ . "/UsersDatabase.php";
 
 require_once __DIR__ . "/User.php";
 
-
 //Include Google Configuration File
-require_once __DIR__ . "/../google-config.php";
+//require_once __DIR__ . "/../google-config.php";
 // OVAN BEHÖVER LIGGA EFTER CLASSERNA FÖR VI KAN INTE STARTA SESSIONEN INNAN DESS
 
-$google_login_btn = '<a href="' . $google_client->createAuthUrl() . '">Login with Google</a>';
+//$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
 //session_start();  --> behövs inte nu för att den finns redan i google config..
 
 class Template
@@ -20,6 +19,10 @@ class Template
     /* TEMPLATE HEADER */
     public static function header($topic, $file)
     {
+        require_once __DIR__ . "/../google-config.php";
+
+        $google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
+
         //check if user is stored in the session variable
         $is_logged_in = isset($_SESSION["user"]);
 
