@@ -33,7 +33,7 @@ $user = $db->get_by_username($username);
         <select name="role" id="role">
             <option value="role" selected disabled>Role</option>
             <option value="admin">Admin</option>
-            <option value="customer">User</option>
+            <option value="customer">Customer</option>
         </select>
         <br><br>
         <input type="submit" value="Save">
