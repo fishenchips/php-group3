@@ -40,8 +40,13 @@ class Template
 
         <body>
             <header class="header">
-                <h1>Crazy Games - Your choice for all board games</h1>
-                <h2><?= $topic ?></h2>
+
+                <div>
+                    <h1 class="title">CRAZY GAMES</h1>
+                    <h2 class="sub-title">Your choice for all board games</h2>
+                    <img src="/php-group3/assets/uploads/1654764424.jpg" alt="home">
+                    <h2><?= $topic ?></h2>
+                </div>
 
                 <nav>
                     <!-- visible for all -->
@@ -108,16 +113,22 @@ class Template
     public static function footer()
     { ?>
             <footer>
+
                 <p>
                     Copyright Crazy Games 2022
                 </p>
 
                 <em>
-                    Crazy Games - You choice for all board games.
+                    By - Crazy Gang
                 </em>
+
             </footer>
+
+            </main>
+
         </body>
 
         </html>
+
 <?php }
 }
