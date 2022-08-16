@@ -16,3 +16,14 @@ body{
 form{
     margin: 10px 0;
 }
+header{
+    height: 27vh;
+    width: 100vw;
+    background-image: url('https://unsplash.com/photos/O9Epo1PwX5A');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

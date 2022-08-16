@@ -14,7 +14,7 @@ class Database
         $this->conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
 
         if (!$this->conn) {
-            die("Error connection to db!");
+            die("Connection failed!");
         }
     }
 }

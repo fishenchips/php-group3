@@ -3,7 +3,8 @@
 require_once __DIR__ . "/../classes/User.php";
 require_once __DIR__ . "/../classes/UsersDatabase.php";
 
- 
+require_once __DIR__ . "/force-admin.php";
+
 $success = false;
 
 
@@ -13,15 +14,13 @@ if (isset($_POST["id"])) {
     $db = new UsersDatabase();
 
     $success = $db->delete($user_id);
-}
-else{
+} else {
     echo "Invalid input";
 }
 
-if($success){
-    header("Location: /php-group3/pages/admin.php"); 
-}
-else{
+if ($success) {
+    header("Location: /php-group3/pages/admin-users.php");
+} else {
 
     echo "Error deleting user";
 }

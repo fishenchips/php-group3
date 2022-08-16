@@ -6,4 +6,5 @@ unset($_SESSION["user"]);
 
 session_destroy();
 
-header("Location: /shop");
+//wrong redirect, should be php-group3
+header("Location: /php-group3");

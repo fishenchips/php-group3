@@ -31,8 +31,8 @@ class UsersDatabase extends Database
         
         return $user;
     }
+    
     // get all
-
     public function get_all(){
         $query = "SELECT * FROM users";
 
