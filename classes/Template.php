@@ -7,21 +7,29 @@ require_once __DIR__ . "/UsersDatabase.php";
 
 require_once __DIR__ . "/User.php";
 
-//Include Google Configuration File
+/* Lägger in denna för att få med session variabeln korrekt */
 require_once __DIR__ . "/../google-config.php";
+
+//Include Google Configuration File
+//require_once __DIR__ . "/../google-config.php";
 // OVAN BEHÖVER LIGGA EFTER CLASSERNA FÖR VI KAN INTE STARTA SESSIONEN INNAN DESS
 
-$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
-//session_start();  --> behövs inte nu för att den finns redan i google config..
+//$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
+//session_start(); // --> behövs inte nu för att den finns redan i google config..
+
+/* BEHÖVS NU FÖR ATT GOOGLE CONFIG SKA INTE LIGGA I TEMPLATE HEADER 
+    MEN BLIR FEL PÅ LOGIN DÅ
+
+*/
 
 class Template
 {
     /* TEMPLATE HEADER */
     public static function header($topic, $file)
     {
-        require_once __DIR__ . "/../google-config.php";
+        //require_once __DIR__ . "/../google-config.php";
 
-        $google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
+        //$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
 
         //check if user is stored in the session variable
         $is_logged_in = isset($_SESSION["user"]);
@@ -63,7 +71,6 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
-                        <?= $google_login_btn ?>
 
                         <!-- visible for customers only -->
                     <?php elseif ($is_customer) : ?>
