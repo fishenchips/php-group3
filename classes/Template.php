@@ -8,10 +8,10 @@ require_once __DIR__ . "/UsersDatabase.php";
 require_once __DIR__ . "/User.php";
 
 //Include Google Configuration File
-//require_once __DIR__ . "/../google-config.php";
+require_once __DIR__ . "/../google-config.php";
 // OVAN BEHÖVER LIGGA EFTER CLASSERNA FÖR VI KAN INTE STARTA SESSIONEN INNAN DESS
 
-//$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
+$google_login_btn = '<a href="/php-group3/src/' . $google_client->createAuthUrl() . '">Login with Google</a>';
 //session_start();  --> behövs inte nu för att den finns redan i google config..
 
 class Template
