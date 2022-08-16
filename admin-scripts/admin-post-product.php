@@ -30,7 +30,7 @@ if (isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["price
     $full_relative_url = "/php-group3/assets/uploads/{$file_name}";
 
     $success = move_uploaded_file($_FILES["product-img"]["tmp_name"], $full_upload_path);
-
+   var_dump($success);
     if ($success) {
         $product = new Product($_POST["name"], $_POST["description"], $_POST["price"], $full_relative_url);
 

@@ -23,8 +23,15 @@ Template::admin_header();
 
 <br><br><br>
 
-<h1>Kod för denna sida saknas</h1>
-<h1>Kod för denna sida saknas</h1>
+<form action="/php-group3/admin-scripts/admin-post-create-user.php" method="post">
+
+    <input type="text" name="username" placeholder="Username"> <br>
+    <input type="password" name="password" placeholder="Password"> <br>
+    <input type="password" name="confirm-password" placeholder="Confirm your Password"> <br>
+    <input type="submit" value="Register">
+
+</form>
+
 <br><br><br>
 
 <?php
