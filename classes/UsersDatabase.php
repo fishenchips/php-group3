@@ -54,7 +54,9 @@ class UsersDatabase extends Database
 
         $stmt = mysqli_prepare($this->conn, $query);
 
-        $stmt->bind_param("sss", $user->username, $user->get_password_hash(), $user->role);
+        $hash = $user->get_password_hash();
+        
+        $stmt->bind_param("sss", $user->username, $hash, $user->role);
 
         $success = $stmt->execute();
 

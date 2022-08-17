@@ -43,15 +43,10 @@ class Template
             <header class="header">
 
                 <div>
-
                     <h1 class="title">CRAZY GAMES</h1>
-
                     <h2 class="sub-title">Your choice for all board games</h2>
-
                     <img src="/php-group3/assets/uploads/1654764424.jpg" alt="home">
-
                     <h2><?= $topic ?></h2>
-
                 </div>
 
                 <nav>
@@ -80,7 +75,7 @@ class Template
 
                 <!-- If user is logged in -->
                 <?php if ($is_logged_in) : ?>
-                    <p>
+                    <p class="logged_in">
                         Welcome back,
                         <b>
                             <?= $logged_in_user->username ?>
@@ -101,7 +96,7 @@ class Template
     public static function admin_header()
     {
         ?>
-            <nav>
+            <nav class="nav-admin-panel">
                 <h3>Admin stuff</h3>
                 <a href="/php-group3/pages/admin-create-product.php">Create new product</a>
                 <a href="/php-group3/pages/admin-products.php">See all products</a>
@@ -132,9 +127,7 @@ class Template
 
 
                 <em>
-
                     By - Crazy Gang
-
                 </em>
 
             </footer>

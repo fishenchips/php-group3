@@ -25,7 +25,7 @@ Template::header("Products", "products")
                 <?= $product->description ?>
             </p>
             <p class="product-price">
-                <?= $product->price ?>
+                <?= $product->price ?> KR
             </p>
             <form action="/php-group3/pages/product.php">
                 <input type="hidden" name="id" value="<?= $product->id ?>">
