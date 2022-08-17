@@ -86,8 +86,7 @@ class Product_Database extends Database {
         $stmt->bind_param("ssis", $product->name, $product->description, $product->price, $product->product_img);
     
         $success = $stmt->execute();
-        var_dump($stmt->error);
-        die();
+    
         return $success;
     }
 }
