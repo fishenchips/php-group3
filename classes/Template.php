@@ -2,17 +2,20 @@
 
 //load in user class prior to starting the session
 
+//testing to add
+require_once __DIR__ . "/UsersDatabase.php";
+
 require_once __DIR__ . "/User.php";
 
-
-// start the session to check for loggedInStatus
-session_start();
+/* Lägger in denna för att få med session variabeln korrekt */
+require_once __DIR__ . "/../google-config.php";
 
 class Template
 {
     /* TEMPLATE HEADER */
     public static function header($topic, $file)
     {
+
         //check if user is stored in the session variable
         $is_logged_in = isset($_SESSION["user"]);
 
@@ -40,8 +43,13 @@ class Template
 
         <body>
             <header class="header">
-                <h1>Crazy Games - Your choice for all board games</h1>
-                <h2><?= $topic ?></h2>
+
+                <div>
+                    <h1 class="title">CRAZY GAMES</h1>
+                    <h2 class="sub-title">Your choice for all board games</h2>
+                    <img src="/php-group3/assets/uploads/1654764424.jpg" alt="home">
+                    <h2><?= $topic ?></h2>
+                </div>
 
                 <nav>
                     <!-- visible for all -->
@@ -53,7 +61,6 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
-                        <a href="/">Login with Google</a>
 
                         <!-- visible for customers only -->
                     <?php elseif ($is_customer) : ?>
@@ -69,7 +76,7 @@ class Template
 
                 <!-- If user is logged in -->
                 <?php if ($is_logged_in) : ?>
-                    <p>
+                    <p class="logged_in">
                         Welcome back,
                         <b>
                             <?= $logged_in_user->username ?>
@@ -90,7 +97,7 @@ class Template
     public static function admin_header()
     {
         ?>
-            <nav>
+            <nav class="nav-admin-panel">
                 <h3>Admin stuff</h3>
                 <a href="/php-group3/pages/admin-create-product.php">Create new product</a>
                 <a href="/php-group3/pages/admin-products.php">See all products</a>
@@ -108,16 +115,22 @@ class Template
     public static function footer()
     { ?>
             <footer>
+
                 <p>
                     Copyright Crazy Games 2022
                 </p>
 
                 <em>
-                    Crazy Games - You choice for all board games.
+                    By - Crazy Gang
                 </em>
+
             </footer>
+
+            </main>
+
         </body>
 
         </html>
+
 <?php }
 }

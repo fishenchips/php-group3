@@ -9,14 +9,14 @@ $products = isset($_SESSION["cart"]) ? $_SESSION["cart"] : [];
 Template::header("Shopping Cart", "");
 ?>
 
-<div class="cart-container">
+<div class="cart-container-cart">
     <?php if (!$products) : ?>
         <h3>Your cart is empty..</h3>
     <?php elseif ($_SESSION["cart"]) : ?>
         <form action="/php-group3/scripts/post-create-order.php" method="POST">
             <?php foreach ($products as $product) : ?>
 
-                <div class="product-container">
+                <div class="product-container-cart">
                     <input type="hidden" name="id[]" value="<?= $product->id ?>">
                     <b> <?= $product->name ?> </b>
                     <p> <?= $product->price ?> kr</p>
