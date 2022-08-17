@@ -87,9 +87,7 @@ form {
 /* cart page */
 .cart-container-cart{
     margin-top: 80px;
-    margin-bottom: 150px;
-    
-    
+    margin-bottom: 150px;  
 }
 
 .product-container-cart{
@@ -99,4 +97,10 @@ form {
     max-width: 300px;
     margin-left: 242px;
     padding: 8px;
+}
+
+/* order page */
+.order-container{
+    margin-top: 80px;
+    margin-bottom: 150px;
 }

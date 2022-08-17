@@ -30,7 +30,7 @@ foreach ($orders as $order) :
 ?>
     <ul>
         <li>
-            <div>
+            <div class="order-container">
 
                 <h5>
                     Order number: <?= $order["id"] ?>
