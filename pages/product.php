@@ -22,7 +22,7 @@ Template::header("Product", "product")
         <?= $product->description ?>
     </p>
     <p>
-        <?= $product->price ?>
+        <?= $product->price ?> KR
     </p>
 
     <form action="/php-group3/scripts/post-add-to-cart.php" method="post">
