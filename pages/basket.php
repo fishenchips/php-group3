@@ -18,6 +18,7 @@ Template::header("Shopping Cart", "");
 
                 <div class="product-container-cart">
                     <input type="hidden" name="id[]" value="<?= $product->id ?>">
+                    <img class="checkout-img" src="<?=$product->product_img?>" alt="<?= $product->name ?>">
                     <b> <?= $product->name ?> </b>
                     <p> <?= $product->price ?> kr</p>
                 </div>
