@@ -74,7 +74,7 @@ class Template
 
                 <!-- If user is logged in -->
                 <?php if ($is_logged_in) : ?>
-                    <p>
+                    <p class="logged_in">
                         Welcome back,
                         <b>
                             <?= $logged_in_user->username ?>
@@ -95,7 +95,7 @@ class Template
     public static function admin_header()
     {
         ?>
-            <nav>
+            <nav class="nav-admin-panel">
                 <h3>Admin stuff</h3>
                 <a href="/php-group3/pages/admin-create-product.php">Create new product</a>
                 <a href="/php-group3/pages/admin-products.php">See all products</a>

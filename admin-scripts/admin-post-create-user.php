@@ -40,7 +40,7 @@ if(
     
     if($existing_user == null ){
         $user_db->create($user);
-        die("success");
     }
+    
 } 
  

@@ -34,9 +34,9 @@ foreach ($users as $user) : ?>
         <i><?= $user->role ?></i>
     </p>
 
-    <form action="/php-group3/admin-scripts/admin-post-delete-user.php" method="post">
+    <form class="delete-btn" action="/php-group3/admin-scripts/admin-post-delete-user.php" method="post">
         <input type="hidden" name="id" value="<?= $user->id ?>">
-        <input type="submit" value="Delete user">
+        <input type="submit" value="Delete user" style="background-color: #eb4034;">
     </form>
 
 <?php endforeach;
