@@ -61,7 +61,6 @@ class Template
                     <?php if (!$is_logged_in) : ?>
                         <a href="/php-group3/pages/register.php">Register</a>
                         <a href="/php-group3/pages/login.php">Login</a>
-                        <a href="/">Login with Google</a>
 
                         <!-- visible for customers only -->
                     <?php elseif ($is_customer) : ?>

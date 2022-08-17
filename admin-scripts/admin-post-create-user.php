@@ -38,9 +38,23 @@ if(
     $user->hash_password($_POST['password']);
     $existing_user = $user_db->get_by_username($_POST['username']);
     
-    if($existing_user == null ){
+    /* if($existing_user == null ){
         $user_db->create($user);
+    } */
+
+    if ($existing_user) {
+        die("Username is not available, already taken");
+    } else {
+        $success = $user_db->create($user);
     }
     
-} 
+} else {
+    die("Invalid input");
+}
+
+if ($success) {
+    header("Location: /php-group3/pages/admin-users.php");
+} else {
+    echo "Error adding user to database";
+}
  
